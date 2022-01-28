@@ -20,9 +20,8 @@ if response.status_code == 200:
     data = response.json()
     #Obtain weather data description
     weather = data["weather"][0]["description"]
-    print(weather)
-    #Obtain temp and subtract to convert to Celcius rounded to 2 dec places
-    temperature = round(data["main"]["temp"] - 273.13, 2)
-    print(temperature)
+    #Obtain temp and convert to Fahrenheit rounded to 2 dec places
+    temperature = round((data["main"]["temp"] - 273.15) * 9/5 + 32, 2)
+    print(f"Weather in {city} is {weather}. The current temperature is {temperature} F.")
 else:
     print("Error occurred.")
