@@ -18,11 +18,11 @@ response = requests.get(request_url)
 #Check status code of request 
 if response.status_code == 200:
     data = response.json()
-    #Obtain weather data
-    weather = data["weather"]
+    #Obtain weather data description
+    weather = data["weather"][0]["description"]
     print(weather)
-    #Obtain temp data
-    temperature = data["main"]["temp"]
+    #Obtain temp and subtract to convert to Celcius rounded to 2 dec places
+    temperature = round(data["main"]["temp"] - 273.13, 2)
     print(temperature)
 else:
     print("Error occurred.")
